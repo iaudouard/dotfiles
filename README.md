@@ -25,27 +25,20 @@ cd ~/.dotfiles
 ```bash
 # Install all configurations
 stow . 
-
-# Or install specific configurations
-stow tmux
-stow nvim
-stow .zshrc
-stow wezterm
 ```
 
 ## Structure
 
 ```
 .
-├── nvim
-│   └── .config
-│       └── nvim
-│           ├── init.lua
-│           └── ...
-├── tmux
-│   └── .tmux.conf
-├── wezterm
-│   └── .wezterm.lua
+├── .config
+│   └── nvim
+│       ├── init.lua
+│       └── ...
+│   └── tmux
+│       └── .tmux.conf
+|   └── wezterm
+│       └── .wezterm.lua
 └── .zshrc
 ```
 
