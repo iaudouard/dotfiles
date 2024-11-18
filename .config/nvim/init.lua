@@ -80,15 +80,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- [[ Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -607,22 +598,30 @@ require('lazy').setup({
       }
     end,
   },
-
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'rebelot/kanagawa.nvim',
-    lazy = false,
+  -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
     config = function()
-      require('kanagawa').setup {
-        transparent = true, -- do not set background color
+      require('catppuccin').setup {
+        transparent_background = true,
       }
-      -- setup must be called before loading
-      vim.cmd 'colorscheme kanagawa-dragon'
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
+
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   lazy = false,
+  --   config = function()
+  --     require('kanagawa').setup {
+  --       transparent = true, -- do not set background color
+  --     }
+  --     -- setup must be called before loading
+  --     vim.cmd 'colorscheme kanagawa-dragon'
+  --   end,
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
