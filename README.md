@@ -1,52 +1,65 @@
 # Dotfiles
 
-This repository contains my personal dotfiles managed using GNU Stow. It includes configurations for:
-- tmux - Terminal multiplexer
-- Neovim - Modern vim text editor
-- Zsh - Shell environment
-- WezTerm - GPU-accelerated terminal emulator
+Managed with GNU Stow using per-app packages that mirror final paths under $HOME.
 
 ## Prerequisites
-
 - GNU Stow
 - Git
 
-Install stow on:
-- macOS: `brew install stow`
+## Layout (packages -> target paths)
+- zsh/.zshrc -> ~/.zshrc
+- aerospace/.aerospace.toml -> ~/.aerospace.toml
+- nvim/.config/nvim -> ~/.config/nvim
+- tmux/.config/tmux -> ~/.config/tmux
+- wezterm/.config/wezterm -> ~/.config/wezterm
+- starship/.config/starship -> ~/.config/starship
 
-## Installation
-
-1. Clone this repository:
+## Quick start
+Clone, then dry-run to preview links:
 ```bash
-git clone https://github.com/iaudouard/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+git clone git@github.com:iaudouard/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make dry-run
 ```
 
+Install all packages into $HOME:
 ```bash
-# Install all configurations
-stow . 
+make install
 ```
 
-## Structure
-
-```
-.
-├── .config
-│   └── nvim
-│       ├── init.lua
-│       └── ...
-│   └── tmux
-│       └── .tmux.conf
-|   └── wezterm
-│       └── .wezterm.lua
-└── .zshrc
-```
-
-
-## Removing
-
-To remove symlinks for a specific configuration:
+Update existing links after changes:
 ```bash
-stow -D package_name
+make restow
 ```
 
+Uninstall (remove symlinks):
+```bash
+make uninstall
+```
+
+Install only specific packages:
+```bash
+make install PKGS="zsh nvim tmux"
+```
+
+## Conflicts
+If a real file/dir already exists where a link should go, back it up and try again. Example:
+```bash
+mv ~/.zshrc ~/.zshrc.bak
+mv ~/.config/nvim ~/.config/nvim.bak
+make install
+```
+
+## tmux tips
+Reload config:
+- inside tmux session
+```tmux
+prefix + r 
+```
+- outisde session
+```bash
+tmux source-file ~/.config/tmux/tmux.conf
+```
+
+## Notes
+- .stow-local-ignore prevents stow from linking repo metadata (e.g., .git, README.md).
