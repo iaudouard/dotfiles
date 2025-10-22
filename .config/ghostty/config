@@ -1,8 +1,0 @@
-background-opacity = 0.8
-background-blur-radius = 20
-
-theme = "catppuccin-mocha"
-
-keybind = opt+a=ignore
-
-font-family = "JetBrainsMono Nerd Font"
