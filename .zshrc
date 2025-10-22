@@ -105,7 +105,12 @@ export PATH="$PATH:/Users/ivanaudouard/.spicetify"
 export PATH="$HOME/protoc/bin:$PATH"
 
 bindkey "^X\\x7f" backward-kill-line
-. "$HOME/.cargo/env"
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion "$HOME/.cargo/env"
 
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export TERM='xterm-256color'
+
+alias get_esprs='. $HOME/export-esp.sh'
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"

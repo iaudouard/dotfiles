@@ -209,7 +209,8 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        -- pickers = {
+        -- },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -379,9 +380,108 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        asm_lsp = {},
         marksman = {},
+        clangd = {},
         astro = {},
+        jdtls = {
+          cmd = {
+            'java',
+            '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+            '-Dosgi.bundles.defaultStartLevel=4',
+            '-Declipse.product=org.eclipse.jdt.ls.core.product',
+            '-Dlog.protocol=true',
+            '-Dlog.level=ALL',
+            '-Xmx1g',
+            '--add-modules=ALL-SYSTEM',
+            '--add-opens',
+            'java.base/java.util=ALL-UNNAMED',
+            '--add-opens',
+            'java.base/java.lang=ALL-UNNAMED',
+
+            -- Add lombok support
+            '-javaagent:' .. vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+
+            '-jar',
+            vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar',
+            '-configuration',
+            vim.fn.expand '~/.local/share/nvim/mason/packages/jdtls/config_mac',
+            '-data',
+            vim.fn.expand '~/.cache/jdtls-workspace' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t'),
+          },
+          settings = {
+            java = {
+              eclipse = {
+                downloadSources = true,
+              },
+              configuration = {
+                updateBuildConfiguration = 'interactive',
+                -- Specify runtimes if you have multiple JDKs
+                runtimes = {
+                  -- {
+                  --   name = "JavaSE-17",
+                  --   path = "/path/to/java-17",
+                  -- },
+                  -- {
+                  --   name = "JavaSE-11",
+                  --   path = "/path/to/java-11",
+                  -- },
+                },
+              },
+              maven = {
+                downloadSources = true,
+              },
+              implementationsCodeLens = {
+                enabled = true,
+              },
+              referencesCodeLens = {
+                enabled = true,
+              },
+              references = {
+                includeDecompiledSources = true,
+              },
+              format = {
+                enabled = true,
+                settings = {
+                  tabSize = 4,
+                },
+              },
+            },
+            signatureHelp = { enabled = true },
+            completion = {
+              favoriteStaticMembers = {
+                'org.hamcrest.MatcherAssert.assertThat',
+                'org.hamcrest.Matchers.*',
+                'org.hamcrest.CoreMatchers.*',
+                'org.junit.jupiter.api.Assertions.*',
+                'java.util.Objects.requireNonNull',
+                'java.util.Objects.requireNonNullElse',
+                'org.mockito.Mockito.*',
+              },
+              importOrder = {
+                'java',
+                'javax',
+                'com',
+                'org',
+              },
+            },
+            sources = {
+              organizeImports = {
+                starThreshold = 9999,
+                staticStarThreshold = 9999,
+              },
+            },
+            codeGeneration = {
+              toString = {
+                template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
+              },
+              useBlocks = true,
+            },
+          },
+        },
         pyright = {},
+        templ = {},
+        terraformls = {},
         ts_ls = {},
         tailwindcss = {},
         gopls = {},
@@ -661,7 +761,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'markdown', 'lua', 'luadoc', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'javascript', 'html', 'markdown', 'markdown_inline', 'lua', 'luadoc', 'vim', 'vimdoc', 'terraform' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -690,21 +790,6 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'supermaven-inc/supermaven-nvim',
-  --   config = function()
-  --     require('supermaven-nvim').setup {}
-  --   end,
-  -- },
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   require 'kickstart.plugins.lint',
