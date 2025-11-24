@@ -97,7 +97,6 @@ export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="/opt/homebrew/opt/protobuf@3/bin:$PATH"
 export PATH="$HOME/.pub-cache/bin:$PATH"
-export PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
 
 export PATH="$PATH:/Users/ivanaudouard/.spicetify"
 
