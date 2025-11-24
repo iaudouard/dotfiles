@@ -383,6 +383,8 @@ require('lazy').setup({
         asm_lsp = {},
         marksman = {},
         clangd = {},
+        csharp_ls = {},
+        kotlin_lsp = {},
         astro = {},
         jdtls = {
           cmd = {
@@ -761,7 +763,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'javascript', 'html', 'markdown', 'markdown_inline', 'lua', 'luadoc', 'vim', 'vimdoc', 'terraform' },
+      ensure_installed = { 'bash', 'c', 'c_sharp', 'diff', 'javascript', 'html', 'markdown', 'markdown_inline', 'lua', 'luadoc', 'vim', 'vimdoc', 'terraform' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
