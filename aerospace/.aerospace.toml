@@ -99,6 +99,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-p = 'exec-and-forget open -a /Applications/Postman.app'
     alt-i = 'exec-and-forget open -a /Applications/IntelliJ\ IDEA.app'
     alt-c = 'exec-and-forget open -a /System/Applications/Calendar.app'
+    alt-v = 'exec-and-forget open -a /Applications/Visual\ Studio\ Code.app'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#layout
     alt-slash = 'layout tiles horizontal vertical'
