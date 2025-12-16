@@ -77,6 +77,18 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- word count of whole buffer
+vim.keymap.set('n', '<leader>wc', function()
+  local wc = vim.fn.wordcount().words or 0
+  print('Words in buffer: ' .. wc)
+end, { desc = 'Word count (buffer)' })
+
+-- word count of visual selection
+vim.keymap.set('v', '<leader>wc', function()
+  local wc = vim.fn.wordcount().visual_words or 0
+  print('Words in selection: ' .. wc)
+end, { desc = 'Word count (visual)' })
+
 -- Exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
@@ -390,7 +402,6 @@ require('lazy').setup({
         -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
         asm_lsp = {},
         marksman = {},
-        clangd = {},
         csharp_ls = {},
         kotlin_lsp = {},
         astro = {},
