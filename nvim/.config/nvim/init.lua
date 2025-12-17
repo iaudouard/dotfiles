@@ -723,12 +723,22 @@ require('lazy').setup({
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    priority = 1000,
+    -- priority = 1000,
     config = function()
       require('catppuccin').setup {
         transparent_background = true,
       }
-      vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
+  {
+    'aktersnurra/no-clown-fiesta.nvim',
+    priority = 1000,
+    config = function()
+      require('no-clown-fiesta').setup {
+        theme = 'dim',
+      }
+      vim.cmd.colorscheme 'no-clown-fiesta'
     end,
   },
 
