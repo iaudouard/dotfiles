@@ -113,3 +113,6 @@ export TERM='xterm-256color'
 
 alias get_esprs='. $HOME/export-esp.sh'
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# opencode
+export PATH=/Users/ivanaudouard/.opencode/bin:$PATH
