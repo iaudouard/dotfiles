@@ -6,7 +6,11 @@ return {
   dependencies = { { 'nvim-mini/mini.icons', opts = {} } },
   lazy = false,
   config = function()
-    require('oil').setup()
+    require('oil').setup {
+      win_options = {
+        signcolumn = 'yes:2',
+      },
+    }
     local function toggle_oil()
       local oil = require 'oil'
       -- if in an oil buffer, close it
